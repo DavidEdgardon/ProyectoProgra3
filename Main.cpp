@@ -6,18 +6,6 @@
 #include <conio.h>
 using namespace std;
 
-
-void clearscreen(){
-    HANDLE hOut;
-    COORD Position;
-
-    hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    Position.X = 0;
-    Position.Y = 0;
-    SetConsoleCursorPosition(hOut, Position);
-}
-
 int main(){
 
     char pista[25][25];
@@ -40,9 +28,9 @@ menu:
     }
    int y = 17, x = 9; // las cordenadas del carrito
     srand(time(0));
-     //da a la funci�n aleatoria una nueva semilla, un punto de partida
-     //da el tiempo en segundos desde la �poca de Unix
-     //UNIX descripci�n de instantes de tiempo: se define como la cantidad de segundos transcurridos desde la medianoche
+     //da a la función aleatoria una nueva semilla, un punto de partida
+     //da el tiempo en segundos desde la época de Unix
+     //UNIX descripción de instantes de tiempo: se define como la cantidad de segundos transcurridos desde la medianoche
     int a = 0, b = rand() % 15 + 2; //Cordenadas de obstaculos //rand obtencion de numero aleatorios
     bool empezar = true;
     char carros=219; //ascii
@@ -65,7 +53,7 @@ menu:
         clock_t tiempo;
         tiempo = clock();
         for(;;) {
-            clearscreen();
+            limpiarPantalla();
 
             //cronometro
             tiempo=clock()-tiempo;
@@ -271,4 +259,15 @@ goto menu;
     }
     }
 
+}
+
+void limpiarPantalla(){
+    HANDLE fuera; //proporciona una abstracción de un recurso, por lo que no necesita saber mucho sobre el recurso en sí para usarlo.
+    COORD Posicion; //Define las coordenadas de una celda de caracteres en un búfer de pantalla de la consola
+
+    fuera = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    Posicion.X = 0;
+    Posicion.Y = 0;
+    SetConsoleCursorPosition(fuera, Posicion);
 }
